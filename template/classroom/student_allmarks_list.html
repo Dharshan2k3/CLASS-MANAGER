@@ -1,0 +1,38 @@
+{% extends "classroom/base.html" %}
+{% block content %}
+
+<div class="container">
+  <div class="jumbotron">
+    {% if student.marks.count == 0 %}
+      <h2>No marks are published yet!</h2>
+    {% else %}
+      <h3>Marks profile of {{ student.name }}</h3>
+
+      <table class="table">
+        <thead class="thead-dark">
+          <tr>
+            <th scope="col">Sr. no.</th>
+            <th scope="col">Subject</th>
+            <th scope="col">Teacher Name</th>
+            <th scope="col">Marks Obtained</th>
+            <th scope="col">Max Marks</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for mark in student.marks.all %}
+            <tr>
+              <td>{{ forloop.counter }}</td>
+              <td>{{ mark.subject_name }}</td>
+              <td>{{ mark.teacher.name }}</td>
+              <td>{{ mark.marks_obtained }}</td>
+              <td>{{ mark.maximum_marks }}</td>
+            </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+
+    {% endif %}
+  </div>
+</div>
+
+{% endblock %}
